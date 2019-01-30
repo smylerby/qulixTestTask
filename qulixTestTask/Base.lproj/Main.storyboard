@@ -25,7 +25,7 @@
                                         <rect key="frame" x="8" y="8" width="359" height="451"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Qqg-ou-2RK" detailTextLabel="MSn-FN-tlw" style="IBUITableViewCellStyleSubtitle" id="h9C-xy-9Wk">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="resultCell" textLabel="Qqg-ou-2RK" detailTextLabel="MSn-FN-tlw" style="IBUITableViewCellStyleSubtitle" id="h9C-xy-9Wk" customClass="ResultTableViewCell" customModule="qulixTestTask" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="359" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h9C-xy-9Wk" id="SSG-Wb-6Ku">
@@ -48,8 +48,16 @@
                                                         </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="link" destination="MSn-FN-tlw" id="piB-QL-yrY"/>
+                                                    <outlet property="title" destination="Qqg-ou-2RK" id="X5A-RZ-1Sf"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="iNw-yE-2y2"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="ioG-Uu-IxO"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.28783685120000002" green="0.79691776110000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,13 +87,18 @@
                                             <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3MR-rm-P4h"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UCw-Uu-76I">
+                                        <rect key="frame" x="312" y="132" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.82943781849999998" green="0.96413761519999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="LTj-Bk-Eea" secondAttribute="bottom" constant="8" id="0Li-hN-inl"/>
                                     <constraint firstItem="LTj-Bk-Eea" firstAttribute="height" secondItem="nHO-yn-3Sv" secondAttribute="height" multiplier="0.3" constant="6" id="12j-bG-ntN"/>
+                                    <constraint firstItem="UCw-Uu-76I" firstAttribute="leading" secondItem="LTj-Bk-Eea" secondAttribute="trailing" constant="17" id="7XX-Bg-fSU"/>
                                     <constraint firstItem="731-q2-Vyw" firstAttribute="top" secondItem="nHO-yn-3Sv" secondAttribute="top" constant="8" id="7sI-zL-VLx"/>
                                     <constraint firstItem="LTj-Bk-Eea" firstAttribute="leading" secondItem="nHO-yn-3Sv" secondAttribute="leading" constant="80" id="D0X-48-cXp"/>
+                                    <constraint firstItem="UCw-Uu-76I" firstAttribute="centerY" secondItem="LTj-Bk-Eea" secondAttribute="centerY" id="RlP-D9-rar"/>
                                     <constraint firstItem="731-q2-Vyw" firstAttribute="height" secondItem="nHO-yn-3Sv" secondAttribute="height" multiplier="0.3" constant="6" id="aXp-UP-EPS"/>
                                     <constraint firstItem="731-q2-Vyw" firstAttribute="leading" secondItem="nHO-yn-3Sv" secondAttribute="leading" constant="16" id="mpk-Cn-EgE"/>
                                     <constraint firstAttribute="trailing" secondItem="731-q2-Vyw" secondAttribute="trailing" constant="16" id="rk0-pc-qUm"/>
@@ -109,7 +122,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="loadingIndicator" destination="UCw-Uu-76I" id="2aM-OF-Xrs"/>
                         <outlet property="searchButtonOutlet" destination="LTj-Bk-Eea" id="bCw-8O-cz2"/>
+                        <outlet property="tableView" destination="2yy-Eu-Xl2" id="H7F-hk-rkW"/>
                         <outlet property="textField" destination="731-q2-Vyw" id="HhQ-oe-aTF"/>
                     </connections>
                 </viewController>
