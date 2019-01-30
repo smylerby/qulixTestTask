@@ -126,6 +126,7 @@
                         <outlet property="searchButtonOutlet" destination="LTj-Bk-Eea" id="bCw-8O-cz2"/>
                         <outlet property="tableView" destination="2yy-Eu-Xl2" id="H7F-hk-rkW"/>
                         <outlet property="textField" destination="731-q2-Vyw" id="HhQ-oe-aTF"/>
+                        <outlet property="topView" destination="nHO-yn-3Sv" id="BAA-g4-xbC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

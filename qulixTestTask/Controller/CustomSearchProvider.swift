@@ -15,7 +15,9 @@ class CustomSearchProvider {
     
     func fetchLinks(quary: String) {
         
-        let gooUrl: String = "https://www.googleapis.com/customsearch/v1?key=\(customSearch.apiKey)&cx=\(customSearch.searchEngineId)&q=\(quary)"
+        let newQuary = quary.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+        
+        let gooUrl: String = "https://www.googleapis.com/customsearch/v1?key=\(customSearch.apiKey)&cx=\(customSearch.searchEngineId)&q=\(newQuary)"
         
         guard let url = URL(string: gooUrl) else { return }
         
@@ -27,7 +29,9 @@ class CustomSearchProvider {
             }
             
             guard let data = data else { return }
+            
             do {
+                
                 let results = try JSONDecoder().decode(Request.self, from: data)
                 self.itemsArray = results.items
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)

@@ -9,36 +9,50 @@
 import UIKit
 
 class CustomSearchViewController: UIViewController {
-
+    
     let searchEngine = CustomSearchProvider()
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var searchButtonOutlet: UIButton!
+    @IBOutlet weak var topView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingIndicator.isHidden = true
+        
+        //hide keyboard
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        topView.addGestureRecognizer(tap)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name("load"), object: nil)
     }
-
+    
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        loadingIndicator.startAnimating()
-        if let quary = textField.text {
-            searchEngine.fetchLinks(quary: quary)
-            
+        
+        dismissKeyboard()
+        
+        if sender.currentTitle == Button.GoogleSearch.rawValue {
+            searchButtonOutlet.setTitle(Button.Stop.rawValue, for: .normal)
+            loadingIndicator.startAnimating()
+            if let quary = textField.text {
+                searchEngine.fetchLinks(quary: quary)
+            }
         }
     }
+    
     @objc func reloadTableView() {
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.loadingIndicator.stopAnimating()
+            self.searchButtonOutlet.setTitle(Button.GoogleSearch.rawValue, for: .normal)
         }
     }
 }
 
 extension CustomSearchViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchEngine.itemsArray.count
     }
@@ -49,6 +63,10 @@ extension CustomSearchViewController: UITableViewDelegate, UITableViewDataSource
         cell.configure(titleText: searchEngine.itemsArray[indexPath.row].snippet, linkText: searchEngine.itemsArray[indexPath.row].link)
         
         return cell
+    }
+    //hide keyboard
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
