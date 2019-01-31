@@ -9,7 +9,7 @@
 import Foundation
 
 struct Request: Decodable {
-    var items: [Item]
+    var items: [Item]?
 }
 
 struct Item: Decodable {

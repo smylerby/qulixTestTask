@@ -35,8 +35,12 @@ class CustomSearchProvider {
                 
                 do {
                     let results = try JSONDecoder().decode(Request.self, from: data)
-                    for item in results.items {
+                    
+                    if let resultsArray = results.items {
+                    for item in resultsArray {
                         self.itemsArray.append(item)
+                        }
+                        
                     }
                     
                     //Reload tableView after got data from Google
