@@ -13,6 +13,8 @@
 		68457898220091E6000D659F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68457897220091E6000D659F /* Assets.xcassets */; };
 		6845789B220091E6000D659F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68457899220091E6000D659F /* LaunchScreen.storyboard */; };
 		686C55C62201DA3200689E74 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686C55C52201DA3200689E74 /* Button.swift */; };
+		686C55C82201E30E00689E74 /* TableDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686C55C72201E30E00689E74 /* TableDataProvider.swift */; };
+		686C55CC2201F3E900689E74 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686C55CB2201F3E900689E74 /* Alert.swift */; };
 		68AC642322019FA1006CEB7D /* CustomSearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AC642222019FA1006CEB7D /* CustomSearchEngine.swift */; };
 		68AC64262201A170006CEB7D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AC64252201A170006CEB7D /* Request.swift */; };
 		68AC64282201A3A7006CEB7D /* CustomSearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AC64272201A3A7006CEB7D /* CustomSearchProvider.swift */; };
@@ -28,6 +30,8 @@
 		6845789A220091E6000D659F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6845789C220091E6000D659F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		686C55C52201DA3200689E74 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		686C55C72201E30E00689E74 /* TableDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataProvider.swift; sourceTree = "<group>"; };
+		686C55CB2201F3E900689E74 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		68AC642222019FA1006CEB7D /* CustomSearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchEngine.swift; sourceTree = "<group>"; };
 		68AC64252201A170006CEB7D /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		68AC64272201A3A7006CEB7D /* CustomSearchProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchProvider.swift; sourceTree = "<group>"; };
@@ -64,6 +68,7 @@
 		6845788F220091D8000D659F /* qulixTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				686C55CA2201EAE500689E74 /* Providers */,
 				68AC64292201A858006CEB7D /* View */,
 				68AC64242201A05B006CEB7D /* Controller */,
 				68AC642122019F82006CEB7D /* Model */,
@@ -80,8 +85,18 @@
 				68457897220091E6000D659F /* Assets.xcassets */,
 				68457899220091E6000D659F /* LaunchScreen.storyboard */,
 				6845789C220091E6000D659F /* Info.plist */,
+				686C55CB2201F3E900689E74 /* Alert.swift */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		686C55CA2201EAE500689E74 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				68AC64272201A3A7006CEB7D /* CustomSearchProvider.swift */,
+				686C55C72201E30E00689E74 /* TableDataProvider.swift */,
+			);
+			path = Providers;
 			sourceTree = "<group>";
 		};
 		68AC642122019F82006CEB7D /* Model */ = {
@@ -98,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				68457892220091D8000D659F /* CustomSearchViewController.swift */,
-				68AC64272201A3A7006CEB7D /* CustomSearchProvider.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -182,8 +196,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				686C55CC2201F3E900689E74 /* Alert.swift in Sources */,
 				686C55C62201DA3200689E74 /* Button.swift in Sources */,
 				68457893220091D8000D659F /* CustomSearchViewController.swift in Sources */,
+				686C55C82201E30E00689E74 /* TableDataProvider.swift in Sources */,
 				68AC64282201A3A7006CEB7D /* CustomSearchProvider.swift in Sources */,
 				68AC64262201A170006CEB7D /* Request.swift in Sources */,
 				68457891220091D8000D659F /* AppDelegate.swift in Sources */,

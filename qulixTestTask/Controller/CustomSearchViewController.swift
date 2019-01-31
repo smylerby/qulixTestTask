@@ -10,8 +10,7 @@ import UIKit
 
 class CustomSearchViewController: UIViewController {
     
-    let searchEngine = CustomSearchProvider()
-    
+    @IBOutlet var dataProvider: TableDataProvider!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
@@ -21,52 +20,63 @@ class CustomSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //hide keyboard
+        //Hide keyboard if user tapped to the topView
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         topView.addGestureRecognizer(tap)
         
+        //Some listeners
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name("load"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetButton), name: NSNotification.Name("resetButton"), object: nil)
+        
     }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        
+        //hide keyboard
         dismissKeyboard()
         
+        if textField.text == "" {
+            warnUserIfTheFieldIsEmpty()
+            return
+        }
+        //search only if button's ready (Google Search)
         if sender.currentTitle == Button.GoogleSearch.rawValue {
             searchButtonOutlet.setTitle(Button.Stop.rawValue, for: .normal)
             loadingIndicator.startAnimating()
+            
             if let quary = textField.text {
-                searchEngine.fetchLinks(quary: quary)
+                dataProvider.searchEngine.fetchLinks(quary: quary)
             }
         }
+    }
+    
+}
+
+extension CustomSearchViewController {
+    
+    //reset Search button
+    @objc func resetButton() {
+        self.loadingIndicator.stopAnimating()
+        self.searchButtonOutlet.setTitle(Button.GoogleSearch.rawValue, for: .normal)
+    }
+    
+    //hide keyboard
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func reloadTableView() {
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.loadingIndicator.stopAnimating()
-            self.searchButtonOutlet.setTitle(Button.GoogleSearch.rawValue, for: .normal)
+            self.resetButton()
         }
     }
-}
-
-extension CustomSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchEngine.itemsArray.count
+    //The Field should contain at least 1 character
+    func warnUserIfTheFieldIsEmpty() {
+        let alert = Alert.showIncompleteFormAlert()
+        present(alert, animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as? ResultTableViewCell else { return ResultTableViewCell() }
-        
-        cell.configure(titleText: searchEngine.itemsArray[indexPath.row].snippet, linkText: searchEngine.itemsArray[indexPath.row].link)
-        
-        return cell
-    }
-    //hide keyboard
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }
 

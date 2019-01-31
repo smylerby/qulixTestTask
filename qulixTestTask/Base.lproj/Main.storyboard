@@ -55,8 +55,8 @@
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
-                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="iNw-yE-2y2"/>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="ioG-Uu-IxO"/>
+                                            <outlet property="dataSource" destination="K9N-fh-bdT" id="Vsi-na-zhn"/>
+                                            <outlet property="delegate" destination="K9N-fh-bdT" id="Gbs-o4-mjG"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -83,6 +83,9 @@
                                         <state key="normal" title="Google Search">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="6"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3MR-rm-P4h"/>
                                         </connections>
@@ -122,6 +125,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="dataProvider" destination="K9N-fh-bdT" id="dRZ-Xs-uFj"/>
                         <outlet property="loadingIndicator" destination="UCw-Uu-76I" id="2aM-OF-Xrs"/>
                         <outlet property="searchButtonOutlet" destination="LTj-Bk-Eea" id="bCw-8O-cz2"/>
                         <outlet property="tableView" destination="2yy-Eu-Xl2" id="H7F-hk-rkW"/>
@@ -130,6 +134,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="K9N-fh-bdT" customClass="TableDataProvider" customModule="qulixTestTask" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
         </scene>
