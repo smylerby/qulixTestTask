@@ -21,15 +21,15 @@ class CustomSearchProvider {
         
         //Create URL using API, EngineID and transformed quary
         let goggleUrl = customSearch.setupUrl(quary: newQuary, startFrom: String(page))
-
-        //Create the queue for parse
-        let parsingQueue = DispatchQueue.global()
         
         //Use URL session singleton for make a request (async)
         let session = URLSession.shared
         session.dataTask(with: goggleUrl) { (data, response, error) in
             
             guard let data = data else { return }
+            
+            //Create the queue for parse
+            let parsingQueue = DispatchQueue.global()
             
             parsingQueue.async {
                 
@@ -38,7 +38,7 @@ class CustomSearchProvider {
                     for item in results.items {
                         self.itemsArray.append(item)
                     }
-//                    self.itemsArray = results.items
+                    
                     //Reload tableView after got data from Google
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                     

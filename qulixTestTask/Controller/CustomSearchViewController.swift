@@ -12,6 +12,7 @@ class CustomSearchViewController: UIViewController {
     
     //Counter of google links
     var googleSearchPage = 1
+    var quaryRequest = ""
     
     @IBOutlet var dataProvider: TableDataProvider!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
@@ -53,14 +54,18 @@ class CustomSearchViewController: UIViewController {
             loadingIndicator.startAnimating()
             
             if let quary = textField.text {
-                dataProvider.searchEngine.fetchLinks(quary: quary, startFrom: googleSearchPage)
+                quaryRequest = quary
+                dataProvider.searchEngine.fetchLinks(quary: quaryRequest, startFrom: googleSearchPage)
             }
+        } else {
+//            dataProvider.searchEngine.session.invalidateAndCancel()
+            resetTableView()
         }
     }
     
     //reset TableView each time after new request
     func resetTableView() {
-        
+        quaryRequest = ""
         dataProvider.searchEngine.itemsArray.removeAll()
         googleSearchPage = 1
         tableView.reloadData()
@@ -71,8 +76,6 @@ class CustomSearchViewController: UIViewController {
         let alert = Alert.showIncompleteFormAlert()
         present(alert, animated: true, completion: nil)
     }
-
-    
 }
 
 extension CustomSearchViewController {
@@ -83,10 +86,8 @@ extension CustomSearchViewController {
         
         //Add 10 links to the Google links counter
         googleSearchPage += 10
-        
-        if let quary = textField.text {
-            dataProvider.searchEngine.fetchLinks(quary: quary, startFrom: googleSearchPage)
-        }
+        dataProvider.searchEngine.fetchLinks(quary: quaryRequest, startFrom: googleSearchPage)
+
     }
     
     //reset Search button

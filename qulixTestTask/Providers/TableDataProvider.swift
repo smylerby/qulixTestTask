@@ -30,10 +30,11 @@ extension TableDataProvider: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        let lastItem = searchEngine.itemsArray.count - 1
-        
-        if indexPath.row == lastItem {
+        if searchEngine.itemsArray.count > 1 {
+            let lastItem = searchEngine.itemsArray.count - 1
+            if indexPath.row == lastItem {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addLinks"), object: nil)
+            }
         }
     }
     

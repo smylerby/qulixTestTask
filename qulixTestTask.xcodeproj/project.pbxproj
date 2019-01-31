@@ -81,11 +81,11 @@
 		685C931B22017A77008FDECD /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				686C55CB2201F3E900689E74 /* Alert.swift */,
 				68457890220091D8000D659F /* AppDelegate.swift */,
 				68457897220091E6000D659F /* Assets.xcassets */,
 				68457899220091E6000D659F /* LaunchScreen.storyboard */,
 				6845789C220091E6000D659F /* Info.plist */,
-				686C55CB2201F3E900689E74 /* Alert.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
