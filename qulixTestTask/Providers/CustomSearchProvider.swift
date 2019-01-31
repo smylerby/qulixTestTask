@@ -14,13 +14,13 @@ class CustomSearchProvider {
     var itemsArray = [Item]() 
     
     //Fetching func
-    func fetchLinks(quary: String) {
+    func fetchLinks(quary: String, startFrom page: Int) {
         
         //Change quary from user to Google type
         let newQuary = quary.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
         
         //Create URL using API, EngineID and transformed quary
-        let goggleUrl = CustomSearchEngine.shared.setupUrl(quary: newQuary, pageFromResult: "10")
+        let goggleUrl = customSearch.setupUrl(quary: newQuary, startFrom: String(page))
 
         //Create the queue for parse
         let parsingQueue = DispatchQueue.global()
@@ -35,7 +35,10 @@ class CustomSearchProvider {
                 
                 do {
                     let results = try JSONDecoder().decode(Request.self, from: data)
-                    self.itemsArray = results.items
+                    for item in results.items {
+                        self.itemsArray.append(item)
+                    }
+//                    self.itemsArray = results.items
                     //Reload tableView after got data from Google
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                     
@@ -47,10 +50,8 @@ class CustomSearchProvider {
                     })
                 }
             }
-            
             }.resume()
     }
-    
     
 }
 

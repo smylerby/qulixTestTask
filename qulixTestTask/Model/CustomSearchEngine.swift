@@ -16,7 +16,7 @@ class CustomSearchEngine {
     private let apiKey = "AIzaSyCcn4plOLi0CeZHj7K-yxUXdJ90LFsqQUY"
     private let searchEngineId = "010620630695693304158:v6emwiw7kh4"
     
-    func setupUrl(quary: String, pageFromResult: String) -> URL {
+    func setupUrl(quary: String, startFrom page: String) -> URL {
         
         var urlComponents = URLComponents()
         
@@ -28,7 +28,7 @@ class CustomSearchEngine {
             URLQueryItem(name: "key", value: apiKey),
             URLQueryItem(name: "cx", value: searchEngineId),
             URLQueryItem(name: "q", value: quary),
-            URLQueryItem(name: "start", value: pageFromResult)
+            URLQueryItem(name: "start", value: page)
             
         ]
         guard let url = urlComponents.url else { return URLComponents().url! }
