@@ -13,8 +13,8 @@ class CustomSearchEngine {
     static let shared = CustomSearchEngine()
     private init () {}
     
-    private let apiKey = "AIzaSyDaUVNho0uUwwy7co91VxspMtLi4nONyOU"
-    private let searchEngineId = "006705012858261326670:log298jdutq"
+    private let apiKey = "AIzaSyBT-5YTIrmconab6BPQ1KuvExm60spTt2E"
+    private let searchEngineId = "010620630695693304158:h-hlrjkgwbm"
     
     func setupUrl(quary: String, startFrom page: String) -> URL {
         

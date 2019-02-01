@@ -11,7 +11,7 @@ import UIKit
 class CustomSearchProvider {
     
     private let customSearch = CustomSearchEngine.shared
-    var itemsArray = [Item]() 
+    var itemsArray = [Item]()
     
     //Fetching func
     func fetchLinks(quary: String, startFrom page: Int) {

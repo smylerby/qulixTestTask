@@ -58,8 +58,8 @@ class CustomSearchViewController: UIViewController {
                 dataProvider.searchEngine.fetchLinks(quary: quaryRequest, startFrom: googleSearchPage)
             }
         } else {
-//            dataProvider.searchEngine.session.invalidateAndCancel()
-            resetTableView()
+//            resetButton()
+//            resetTableView()
         }
     }
     
