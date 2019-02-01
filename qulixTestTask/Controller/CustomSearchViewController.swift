@@ -17,6 +17,7 @@ class CustomSearchViewController: UIViewController {
     @IBOutlet var dataProvider: TableDataProvider!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewForReset: UITableView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var searchButtonOutlet: UIButton!
     @IBOutlet weak var topView: UIView!
@@ -47,19 +48,11 @@ class CustomSearchViewController: UIViewController {
             warnUserIfTheFieldIsEmpty()
             return
         }
-        
         //search only if button's ready (Google Search)
         if sender.currentTitle == Button.GoogleSearch.rawValue {
-            searchButtonOutlet.setTitle(Button.Stop.rawValue, for: .normal)
-            loadingIndicator.startAnimating()
-            
-            if let quary = textField.text {
-                quaryRequest = quary
-                dataProvider.searchEngine.fetchLinks(quary: quaryRequest, startFrom: googleSearchPage)
-            }
+            startSearch()
         } else {
-//            resetButton()
-//            resetTableView()
+            stopSearch()
         }
     }
     
@@ -75,6 +68,21 @@ class CustomSearchViewController: UIViewController {
     func warnUserIfTheFieldIsEmpty() {
         let alert = Alert.showIncompleteFormAlert()
         present(alert, animated: true, completion: nil)
+    }
+    
+    func stopSearch() {
+        resetButton()
+        tableViewForReset.isHidden = false
+    }
+    
+    func startSearch() {
+        tableViewForReset.isHidden = true
+        searchButtonOutlet.setTitle(Button.Stop.rawValue, for: .normal)
+        loadingIndicator.startAnimating()
+        if let quary = textField.text {
+            quaryRequest = quary
+            dataProvider.searchEngine.fetchLinks(quary: quaryRequest, startFrom: googleSearchPage)
+        }
     }
 }
 
